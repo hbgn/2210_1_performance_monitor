@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}
+
+    {% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'layui/css/layui.css' %}">
+    {% block css %}
+
+    {% endblock %}
+</head>
+<body>
+    <div>
+        <ul class="layui-nav">
+          <li class="layui-nav-item">
+            <a href="">{% block monitor_options %}
+
+            {% endblock %}<span class="layui-badge"></span></a>
+          </li>
+          <li class="layui-nav-item">
+            <a href="">{% block judge_connect %}
+
+            {% endblock %}<span class="layui-badge-dot"></span></a>
+          </li>
+          <li class="layui-nav-item">
+            <a href=""><img src="//t.cn/RCzsdCq" class="layui-nav-img">我</a>
+            <dl class="layui-nav-child">
+              <dd><a href="javascript:;">修改信息</a></dd>
+              <dd><a href="javascript:;">安全管理</a></dd>
+              <dd><a href="javascript:;">退了</a></dd>
+            </dl>
+          </li>
+        </ul>
+    </div>
+    <!-- 图形化界面显示, 监控数据 -->
+    <div>
+        {% block m_data %}
+
+        {% endblock %}
+    </div>
+
+
+{% block js %}
+
+{% endblock %}
+<script src="{% static 'layui/layui.js' %}"></script>
+
+
+</body>
+</html>

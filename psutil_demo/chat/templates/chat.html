@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>聊天室开发</title>
+</head>
+<body>
+<div style="width: 350px; height: 300px; border: 1px solid #578900" id="info"></div>
+<textarea id="msg"></textarea><br>
+<input type="button" value="发送" onclick="SendMessage()">
+<input type="button" value="断开连接" onclick="CloseConect()">
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script>
+    // socket-前端 建立连接
+    socket = new WebSocket('ws://127.0.0.1:8000/ws/wscon/')
+
+    // websocket连接建立时后后端交互，socket.onopen()
+    // onopen回调函数，执行建立连接后（self.accpet()）accpet方法，前端显示连接已建立，
+    socket.onopen = function (res) {
+        var tag1 = $('<div>');
+        tag1.text("连接成功！");
+        $('#info').append(tag1);
+    }
+
+    // 接收消息(send方法给前端发送数据)
+    // onmessage方法接收后端send方法发过来的数据，加入到div里面
+    socket.onmessage = function (res) {
+        console.log(res.data);
+        var tag2 = $('<div>');
+        tag2.text(res.data);
+        $('#info').append(tag2);
+    }
+
+    // 发送消息socket.send() 客户端向服务器发送消息
+    function SendMessage() {
+        var msg = $('#msg').val();
+        socket.send(msg);
+    }
+
+    // 断开连接 socket.close()
+    // 前端点击断开连接，后端接收到消息后断开
+    // 客户端主动向服务端发出断开连接
+    function CloseConect() {
+        socket.close();
+    }
+
+</script>
+</body>
+</html>
