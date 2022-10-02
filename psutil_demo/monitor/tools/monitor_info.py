@@ -1,5 +1,6 @@
 # from time import sleep
 import psutil
+import datetime
 
 
 class Monitor:
@@ -14,6 +15,12 @@ class Monitor:
         )
         return data
 
+    # 获取内存的信息
+    def mem(self):
+        pass
+
+    def dt(self):
+        return datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
 # if __name__ == '__main__':
 #     m = Monitor()

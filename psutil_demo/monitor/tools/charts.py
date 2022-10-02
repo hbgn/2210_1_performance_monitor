@@ -53,7 +53,7 @@ class Chart(object):
                      radius='70%',
                      split_number=10,
                      detail_label_opts=opts.LabelOpts(
-                         font_size=22, color="blue", font_family="Microsoft YaHei"
+                         formatter="{value}%",font_size=22, color="blue", font_family="Microsoft YaHei"
                      ),
                  )
         )
