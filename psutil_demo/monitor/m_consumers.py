@@ -8,7 +8,10 @@ class Monitor_Consum(WebsocketConsumer):
 
     # 收发消息
     def websocket_receive(self, message):
-        self.send()
+        if message.get('text') == '我来了':
+            self.close()
+        else:
+            self.send('ok!')
 
     # 断开连接
     def websocket_disconnect(self, message):

@@ -14,18 +14,18 @@
 <body>
     <div>
         <ul class="layui-nav">
-          <li class="layui-nav-item">
-            <a href="">{% block monitor_options %}
+          <li class="layui-nav-item" style="width: 120px;">
+            {% block monitor_options %}
 
-            {% endblock %}<span class="layui-badge"></span></a>
+            {% endblock %}
           </li>
-          <li class="layui-nav-item">
-            <a href="">{% block judge_connect %}
+          <li class="layui-nav-item" style="width: 120px;">
+            {% block judge_connect %}
 
-            {% endblock %}<span class="layui-badge-dot"></span></a>
+            {% endblock %}
           </li>
-          <li class="layui-nav-item">
-            <a href=""><img src="//t.cn/RCzsdCq" class="layui-nav-img">我</a>
+          <li class="layui-nav-item" style="float: right;">
+            <a href=""><img src="//t.cn/RCzsdCq" class="layui-nav-img" >我</a>
             <dl class="layui-nav-child">
               <dd><a href="javascript:;">修改信息</a></dd>
               <dd><a href="javascript:;">安全管理</a></dd>
