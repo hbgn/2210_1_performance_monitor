@@ -8,24 +8,41 @@ socket.onopen = function () {
     $('#conn').append(tag1);
 };
 
+
 function updata_uri(res) {
     var data = res.data;
-    var option_per = new Array(option_per0, option_per1, option_per2, option_per3);
-    var chart_per = new Array(chart_per0, chart_per1, chart_per2, chart_per3);
+    data = JSON.parse(data);
 
-    data = JSON.parse(data);  // json to object
+    var net_T = "";
 
-    // 水球图数据实时更新
-    option_cpu_avg.series[0].data[0] = (data['cpu']['percent_avg'] / 100).toFixed(4);
-    option_cpu_avg.title[0].text = 'cpu平均使用率' + '\n' + data['dt'];
-    chart_cpu_avg.setOption(option_cpu_avg);   // update option_cpu_avg to chart_cpu_avg
+    net_T += '<thead class="layui-font-16 layui-bg-orange"><tr>';
+    net_T += '<td>网卡名称</td>';
+    net_T += '<td>bytes_sent</td>';
+    net_T += '<td>bytes_recv</td>';
+    net_T += '<td>packets_sent</td>';
+    net_T += '<td>packets_recv</td>';
+    net_T += '<td>address</td>';
+    net_T += '<td>netmask</td>';
+    net_T += '<td>broadcast</td></thead>';
 
-    // 仪表盘数据实时更新
-    for (var i = 0; i <= 3; i++) {
-        option_per[i].series[0].data[0].value = data['cpu']['percent_per'][i];
-        option_per[i].title[0].text = 'cpu' + i + '使用率' + '\n' + data['dt'];
-        chart_per[i].setOption(option_per[i]);
-    }
+    $.each(data['net'], function (index, val) {
+        net_T += '<tr><td>' + val['name'] + '</td>';
+        net_T += '<td>' + val['bytes_sent'] + '</td>';
+        net_T += '<td>' + val['bytes_recv'] + '</td>';
+        net_T += '<td>' + val['packets_sent'] + '</td>';
+        net_T += '<td>' + val['packets_recv'] + '</td>';
+        net_T += '<td>' + val['addr'] + '</td>';
+        net_T += '<td>' + val['netmask'] + '</td>';
+        if (val['broadcast']) {
+            net_T += '<td>' + val['broadcast'] + '</td>';
+        } else {
+            net_T += '<td>无数据</td>';
+        }
+    });
+
+    document.getElementById('net_table').innerHTML = net_T;
+
+
 }
 
 
@@ -36,8 +53,9 @@ setInterval(function () {
 
 
 socket.onmessage = function (res) {
-    updata_uri(res)
-}
+    // console.log(res);
+    updata_uri(res);
+};
 
 
 // 断开连接

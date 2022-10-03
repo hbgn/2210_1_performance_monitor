@@ -44,7 +44,7 @@ class Chart(object):
         liquid.chart_id = chart_id
         return liquid.render_embed()
 
-    # mem仪表盘图
+    # mem仪表盘图 展示比率
     def mem_html(self, chart_id, title, value):
         gauge = (
             Gauge(init_opts=opts.InitOpts(width="100%", height="100%"))
@@ -62,7 +62,7 @@ class Chart(object):
         gauge.chart_id = chart_id
         return gauge.render_embed()
 
-    # # mem仪表盘图
+    # # mem仪表盘图 展示值
     # def mem_html(self, chart_id, title, value):
     #     gauge = (
     #         Gauge(init_opts=opts.InitOpts(width="100%", height="100%"))
