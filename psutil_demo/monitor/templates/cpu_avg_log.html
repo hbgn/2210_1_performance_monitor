@@ -1,0 +1,33 @@
+{% extends 'temp.html' %}
+{% load static %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block css %}
+    <style>
+        body {
+            background-color: #8d8d8d;
+        }
+    </style>
+{% endblock %}
+
+{% block monitor_options %}
+    CPU统计数据日志
+{% endblock %}
+
+{% block judge_connect %}
+    <div id="conn"></div>
+{% endblock %}
+
+{% block m_data %}
+    <div style="height: 450px;">
+        {{ line_cpu_log|safe }}
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script src="{% static 'js/cpu_monitor.js' %}"></script>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+{% endblock %}

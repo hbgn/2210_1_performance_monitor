@@ -14,9 +14,9 @@ class BaseModel(models.Model):
     """
     日期基类
     """
-    create_date = models.DateField(verbose_name="创建日期", auto_now_add=True)
-    create_time = models.TimeField(verbose_name="采集时间", auto_now_add=True)
-    create_dt = models.DateTimeField(verbose_name="采集日期时间", auto_now_add=True)
+    create_date = models.DateField(verbose_name="创建日期", auto_now_add=True)  # 创建日期
+    create_time = models.TimeField(verbose_name="采集时间", auto_now_add=True)  # 创建时间
+    create_dt = models.DateTimeField(verbose_name="采集日期时间", auto_now_add=True)  # 创建日期时间
 
     class Meta:
         abstract = True
