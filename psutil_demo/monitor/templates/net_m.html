@@ -1,0 +1,78 @@
+{% extends 'temp.html' %}
+{% load static %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block css %}
+    <style>
+        body {
+            background-color: #8d8d8d;
+        }
+
+        table {
+            table-layout: fixed;
+            width: 100%;
+            text-align: center;
+        }
+
+        td {
+            min-width: 150px;
+            max-width: 300px;
+        }
+
+        tr > td:first-child {
+            width: 280px;
+        }
+
+    </style>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+{% endblock %}
+
+{% block monitor_options %}
+    NET监控信息
+{% endblock %}
+
+{% block judge_connect %}
+    <div id="conn"></div>
+{% endblock %}
+
+{% block m_data %}
+    <div class="table-responsive">
+        <table class="table-striped table-hover table-bordered text-nowrap">
+            <thead class="layui-font-16 layui-bg-orange">
+            <tr>
+                <td>网卡名称</td>
+                <td>发送字节数</td>
+                <td>接收字节数</td>
+                <td>发送包的数量</td>
+                <td>接收包的数量</td>
+                <td>网卡IP地址</td>
+                <td>子网掩码</td>
+                <td>广播地址</td>
+            </tr>
+            </thead>
+            <tbody>
+            {% for net in  net_info %}
+                <tr>
+                    <td>{{ net.name }}</td>
+                    <td>{{ net.bytes_sent }}</td>
+                    <td>{{ net.bytes_recv }}</td>
+                    <td>{{ net.packets_sent }}</td>
+                    <td>{{ net.packets_recv }}</td>
+                    <td>{{ net.addr }}</td>
+                    <td>{{ net.netmask }}</td>
+                    <td>{{ net.broadcast }}</td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script src="{% static 'js/net_monitor.js' %}"></script>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+{% endblock %}

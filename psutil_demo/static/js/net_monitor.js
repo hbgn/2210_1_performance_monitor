@@ -1,13 +1,12 @@
 // 建立连接
-socket = new WebSocket('ws://127.0.0.1:8000/monitor/cpu/');  // 匹配routings中的路由
+socket = new WebSocket('ws://127.0.0.1:8000/monitor/net/');  // 匹配routings中的路由
 
 // socket.onopen
 socket.onopen = function () {
     var tag1 = $('<div>');
-    tag1.text("连接建立成功");
+    tag1.text("连接服务器成功");
     $('#conn').append(tag1);
 };
-
 
 function updata_uri(res) {
     var data = res.data;

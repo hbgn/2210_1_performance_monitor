@@ -44,6 +44,42 @@ class Chart(object):
         liquid.chart_id = chart_id
         return liquid.render_embed()
 
+    # mem仪表盘图
+    def mem_html(self, chart_id, title, value):
+        gauge = (
+            Gauge(init_opts=opts.InitOpts(width="100%", height="100%"))
+                .add(series_name=title,
+                     data_pair=[[title, value]],
+                     radius='70%',
+                     split_number=10,
+                     detail_label_opts=opts.LabelOpts(
+                         formatter="{value}%", font_size=16, color="blue", font_family="Microsoft YaHei"
+                     ),
+                     )
+        )
+        gauge.set_global_opts(
+            title_opts=opts.TitleOpts(title=title + '\n' + self.dt, pos_left='center', pos_top='16px'))
+        gauge.chart_id = chart_id
+        return gauge.render_embed()
+
+    # # mem仪表盘图
+    # def mem_html(self, chart_id, title, value):
+    #     gauge = (
+    #         Gauge(init_opts=opts.InitOpts(width="100%", height="100%"))
+    #             .add(series_name=title,
+    #                  data_pair=[[title, value]],
+    #                  radius='70%',
+    #                  split_number=10,
+    #                  detail_label_opts=opts.LabelOpts(
+    #                      font_size=16, color="blue", font_family="Microsoft YaHei"
+    #                  ),
+    #                  )
+    #     )
+    #     gauge.set_global_opts(
+    #         title_opts=opts.TitleOpts(title=title + '\n' + self.dt, pos_left='center', pos_top='16px'))
+    #     gauge.chart_id = chart_id
+    #     return gauge.render_embed()
+
     # 每核cpu使用率仪表盘图
     def gauge_html(self, chart_id, title, value):
         gauge = (
@@ -53,10 +89,11 @@ class Chart(object):
                      radius='70%',
                      split_number=10,
                      detail_label_opts=opts.LabelOpts(
-                         formatter="{value}%",font_size=22, color="blue", font_family="Microsoft YaHei"
+                         formatter="{value}%", font_size=22, color="blue", font_family="Microsoft YaHei"
                      ),
-                 )
+                     )
         )
-        gauge.set_global_opts(title_opts=opts.TitleOpts(title=title + '\n' + self.dt, pos_left='center', pos_top='16px'))
+        gauge.set_global_opts(
+            title_opts=opts.TitleOpts(title=title + '\n' + self.dt, pos_left='center', pos_top='16px'))
         gauge.chart_id = chart_id
         return gauge.render_embed()

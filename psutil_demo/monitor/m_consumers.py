@@ -20,6 +20,8 @@ class Monitor_Consum(WebsocketConsumer):
             # 需要向前端传递监控的数据(cpu,mem,storage...)
             data = dict(
                 cpu=m.cpu(),
+                mem=m.mem(),
+                net=m.net(),
                 dt=m.dt()
             )
 

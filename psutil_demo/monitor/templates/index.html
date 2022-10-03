@@ -59,9 +59,9 @@
                     <a href="javascript:;" class="">硬件监控</a>
                     <dl class="layui-nav-child">
                         <dd><a href="{% url 'monitor:cpu' %}" target="InArea">CPU监控</a></dd>
-                        <dd><a href="javascript:;">内存监控</a></dd>
+                        <dd><a href="{% url 'monitor:mem' %}" target="InArea">内存监控</a></dd>
                         <dd><a href="javascript:;">硬盘监控</a></dd>
-                        <dd><a href="javascript:;">网络监控</a></dd>
+                        <dd><a href="{% url 'monitor:net' %}" target="InArea">网络监控</a></dd>
                         <dd><a href="javascript:;">交换分区监控</a></dd>
                         <dd><a href="javascript:;">登陆用户监控</a></dd>
                     </dl>

@@ -18,7 +18,11 @@ class Monitor:
 
     # 获取内存的信息
     def mem(self):
-        pass
+        data = dict(
+            total=round(psutil.virtual_memory().total / 1024 / 1024, 2),
+            used=round(psutil.virtual_memory().used / 1024 / 1024, 2),
+        )
+        return data
 
     # 获取网卡信息(适配器名称，ipv4，收发数据流)
     def net(self):
@@ -57,5 +61,7 @@ if __name__ == '__main__':
     m = Monitor()
     for v in range(1):
         sleep(1)
+        print(m.cpu())
         # print(m.net())
-        pprint.pprint(m.net())
+        # pprint.pprint(m.net())
+        # print(m.mem())
